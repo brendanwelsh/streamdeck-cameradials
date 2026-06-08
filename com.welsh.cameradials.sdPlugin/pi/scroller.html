@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Camera Scroller settings</title>
+  <style>
+    body { font: 13px/1.4 -apple-system, "Segoe UI", sans-serif; color: #ddd; background: #2d2d2d; margin: 0; padding: 12px; }
+    .row { margin-bottom: 12px; }
+    label { display: block; font-weight: 600; margin-bottom: 4px; color: #fff; }
+    input, textarea { width: 100%; box-sizing: border-box; background: #3d3d3d; color: #fff;
+      border: 1px solid #555; border-radius: 4px; padding: 6px 8px; font: inherit; }
+    textarea { height: 150px; resize: vertical; font-family: Consolas, monospace; }
+    .hint { color: #999; font-size: 11px; margin-top: 4px; }
+    code { background: #1e1e1e; padding: 1px 4px; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <label for="nvr">NVR address (host:port)</label>
+    <input id="nvr" type="text" placeholder="192.168.1.10:7441" />
+    <div class="hint">Your UniFi Protect controller's RTSPS host and port. Default RTSPS port is <code>7441</code>.</div>
+  </div>
+
+  <div class="row">
+    <label for="mpv">mpv.net path</label>
+    <input id="mpv" type="text" placeholder="mpvnet.exe" />
+    <div class="hint">Full path to <code>mpvnet.exe</code>, or just <code>mpvnet.exe</code> if it's on PATH.</div>
+  </div>
+
+  <div class="row">
+    <label for="cams">Cameras — one per line, <code>NAME = streamId</code></label>
+    <textarea id="cams" placeholder="FRONT DOOR = xxxxxxxxxxxxxxxx&#10;BACKYARD = yyyyyyyyyyyyyyyy"></textarea>
+    <div class="hint">The stream id is the RTSPS camera id from UniFi Protect. See the README for how to find it. Blank lines and <code>#comments</code> are ignored.</div>
+  </div>
+
+  <script>
+    let ws, uuid, actionInfo;
+
+    function connectElgatoStreamDeckSocket(port, inUUID, registerEvent, info, inActionInfo) {
+      uuid = inUUID;
+      actionInfo = JSON.parse(inActionInfo);
+      ws = new WebSocket("ws://127.0.0.1:" + port);
+      ws.onopen = () => {
+        ws.send(JSON.stringify({ event: registerEvent, uuid }));
+        const s = (actionInfo.payload && actionInfo.payload.settings) || {};
+        document.getElementById("nvr").value = s.nvr || "";
+        document.getElementById("mpv").value = s.mpv || "";
+        document.getElementById("cams").value = s.camsText || "";
+      };
+    }
+
+    function save() {
+      const settings = {
+        nvr: document.getElementById("nvr").value.trim(),
+        mpv: document.getElementById("mpv").value.trim(),
+        camsText: document.getElementById("cams").value
+      };
+      ws.send(JSON.stringify({ event: "setSettings", context: uuid, payload: settings }));
+    }
+
+    document.addEventListener("DOMContentLoaded", () =>
+      ["nvr", "mpv", "cams"].forEach(id =>
+        document.getElementById(id).addEventListener("change", save)));
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
+  "Name": "Camera Scroller",
+  "Version": "1.1.0.0",
+  "Author": "Welsh",
+  "URL": "https://github.com/brendanwelsh/streamdeck-cameradials",
+  "Description": "Scroll UniFi Protect (RTSPS) cameras from a Stream Deck+ dial. Rotate to switch camera, press to open/close a maximized mpv viewer.",
+  "Category": "Camera Scroller",
+  "CategoryIcon": "imgs/category",
+  "Icon": "imgs/category",
+  "SDKVersion": 2,
+  "CodePath": "plugin.js",
+  "Nodejs": { "Version": "24", "Debug": "enabled" },
+  "Software": { "MinimumVersion": "6.4" },
+  "OS": [ { "Platform": "windows", "MinimumVersion": "10" } ],
+  "Actions": [
+    {
+      "Name": "Camera Scroller",
+      "UUID": "com.welsh.cameradials.scroller",
+      "Icon": "imgs/action-camera",
+      "PropertyInspectorPath": "pi/scroller.html",
+      "Tooltip": "Rotate to switch cameras, press to open/close the viewer",
+      "Controllers": ["Encoder"],
+      "Encoder": {
+        "layout": "layouts/camdial.json",
+        "TriggerDescription": { "Rotate": "Switch camera", "Push": "Open / close viewer" }
+      },
+      "States": [ { "Image": "imgs/action-camera", "TitleAlignment": "middle" } ]
+    }
+  ]
+}

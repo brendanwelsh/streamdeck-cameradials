@@ -1,0 +1,12 @@
+{
+  "_comment": "Copy this file to config.json and fill in your own values. config.json is gitignored. These same values can instead (or also) be set per-action in the Stream Deck Property Inspector, which overrides this file. The optional HA bridge in ../bridge reads this file.",
+  "nvr": "192.168.1.10:7441",
+  "mpv": "mpvnet.exe",
+  "bridgePort": 8765,
+  "bridgeLanCidr": "192.168.1.0/24",
+  "cameras": [
+    { "name": "FRONT DOOR", "id": "REPLACE_WITH_STREAM_ID" },
+    { "name": "BACKYARD",   "id": "REPLACE_WITH_STREAM_ID" },
+    { "name": "GARAGE",     "id": "REPLACE_WITH_STREAM_ID" }
+  ]
+}

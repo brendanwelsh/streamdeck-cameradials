@@ -1,0 +1,9 @@
+node_modules/
+*.log
+.DS_Store
+# external binaries are not vendored here (mpv.net is installed separately)
+
+# Personal config (cameras + NVR address). Ship config.json.example only; keep config.json local.
+com.welsh.cameradials.sdPlugin/config.json
+# Bridge runtime state
+com.welsh.cameradials.sdPlugin/bridge/cam-index.txt

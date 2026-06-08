@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schemas.elgato.com/streamdeck/plugins/layout.json",
+  "id": "camdial",
+  "items": [
+    {
+      "key": "icon",
+      "type": "pixmap",
+      "rect": [14, 26, 48, 48]
+    },
+    {
+      "key": "name",
+      "type": "text",
+      "rect": [70, 20, 124, 32],
+      "font": { "size": 16, "weight": 700 },
+      "color": "#ffffff",
+      "alignment": "left"
+    },
+    {
+      "key": "sub",
+      "type": "text",
+      "rect": [70, 52, 124, 22],
+      "font": { "size": 12, "weight": 600 },
+      "color": "#7dd3fc",
+      "alignment": "left"
+    }
+  ]
+}

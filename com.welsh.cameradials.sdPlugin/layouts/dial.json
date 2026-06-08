@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schemas.elgato.com/streamdeck/plugins/layout.json",
+  "id": "dial",
+  "items": [
+    {
+      "key": "icon",
+      "type": "pixmap",
+      "rect": [16, 32, 36, 36]
+    },
+    {
+      "key": "line1",
+      "type": "text",
+      "rect": [58, 12, 138, 40],
+      "font": { "size": 22, "weight": 700 },
+      "color": "#ffffff",
+      "alignment": "center"
+    },
+    {
+      "key": "line2",
+      "type": "text",
+      "rect": [58, 50, 138, 40],
+      "font": { "size": 22, "weight": 700 },
+      "color": "#ffffff",
+      "alignment": "center"
+    }
+  ]
+}
