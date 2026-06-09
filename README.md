@@ -76,15 +76,6 @@ powershell -ExecutionPolicy Bypass -File .\bridge\cam-server-setup.ps1
 ```
 That adds a LAN-scoped firewall rule for the port and a logon task that starts the listener hidden.
 
-## ⚠️ Before making this repo public
-This repo is **private** for a reason: while the working tree is de-personalized (real cameras live in
-the gitignored `config.json`, and `config.json.example` ships placeholders), the **git history still
-contains real camera stream ids and an internal NVR IP** from earlier commits. Before going public:
-- **Scrub history** (e.g. `git filter-repo`) to purge the old IDs/IP, **or**
-- **Re-init** a fresh repo from the current tree (drop history) and force-push / re-create the remote.
-
-Then audit once more for any private values before flipping visibility.
-
 ## Layout
 - `com.welsh.cameradials.sdPlugin/plugin.js` — the plugin (config load + mpv/IPC logic)
 - `com.welsh.cameradials.sdPlugin/manifest.json` — the Camera Scroller encoder action
