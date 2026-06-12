@@ -1,6 +1,8 @@
 node_modules/
 *.log
 .DS_Store
+# generated icon preview contact sheet (run tools/make-preview.py to regenerate)
+icon-preview.png
 # external binaries are not vendored here (mpv.net is installed separately)
 
 # Personal config (cameras + NVR address). Ship config.json.example only; keep config.json local.

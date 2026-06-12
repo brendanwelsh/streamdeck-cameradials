@@ -7,7 +7,7 @@
   "Description": "Scroll UniFi Protect (RTSPS) cameras from a Stream Deck+ dial. Rotate to switch camera, press to open/close a maximized mpv viewer.",
   "Category": "Camera Scroller",
   "CategoryIcon": "imgs/category",
-  "Icon": "imgs/category",
+  "Icon": "imgs/plugin-icon",
   "SDKVersion": 2,
   "CodePath": "plugin.js",
   "Nodejs": { "Version": "24", "Debug": "enabled" },
