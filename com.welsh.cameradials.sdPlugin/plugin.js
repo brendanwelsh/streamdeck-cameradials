@@ -72,7 +72,7 @@ const ICON_CAM = dataUri("imgs/cctv.png");
 
 const SCROLLER = "com.welsh.cameradials.scroller";
 
-let camIdx = 0, camOpen = false;
+let camIdx = 0, camOpen = false, lastDown = 0;
 const scrollerCtx = new Set();
 let ws, openTimer = null;
 
@@ -153,6 +153,9 @@ ws.addEventListener("message", (ev) => {
       break;
     case "dialDown":
       if (a === SCROLLER && CONFIGURED()) {
+        const now = Date.now();
+        if (now - lastDown < 500) break;  // ignore accidental double-tap (avoids open/close race that desyncs camOpen)
+        lastDown = now;
         camOpen = !camOpen;
         if (camOpen) { camIdx = 0; renderCam("swapping"); openCam(true); }  // always start on the first camera, maximized
         else { closeCam(); renderCam(); }
